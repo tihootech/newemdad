@@ -1,0 +1,158 @@
+@font-face {
+	font-family: 'Sahel';
+	src: url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.eot');
+	src: url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.eot?#iefix') format('embedded-opentype'),
+	url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.woff') format('woff'),
+	url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.ttf') format('truetype');
+	font-weight: normal;
+}
+
+body {
+	font-family: 'Sahel';
+	direction: rtl;
+	text-align: right;
+}
+
+/* h1, h2, h3, h4, h5, h6 {
+	font-family: Tanha;
+} */
+
+
+.content-yield {
+	width: 95%;
+}
+
+@media only screen and (max-width: 600px) {
+	.content-yield {
+		width: 98%;
+	}
+}
+
+.btn-round {
+	border-radius: 21px;
+	padding: 15 30px !important;
+}
+
+.main-banner {
+	display: flex;
+	align-items: center;
+}
+
+.main-banner, .top-banner {
+	background-size: cover;
+	background-image: url('../img/bg.jpg');
+}
+.main-banner > .banner-container {
+	width: 100%;
+	min-height:100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.nav-link {
+	color: #fff !important;
+}
+
+.banner-container > .card {
+	width: 85%;
+}
+
+.w-20 {
+	width: 20%;
+}
+
+.border-light {
+	border-color: rgba(255,255,255,0.65);
+}
+
+.custom-control-label::before, .custom-control-label::after {
+	left: unset;
+}
+
+.custom-control-label > span {
+	padding-right: 25px;
+}
+
+.rahgiri {
+	text-align: center;
+	border: 2px solid #E3342F;
+	padding: 10px 50px;
+}
+
+.rahgiri-char {
+	display: inline-block;
+	margin: 0 3px;
+	font-size: 1.25em;
+}
+
+
+.main-logo {
+	width: 100px;
+	position: fixed;
+	top: 25px;
+	left: 50px;
+}
+
+
+.snip-nav {
+  text-align: center;
+  font-weight: 500;
+}
+.snip-nav * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip-nav li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0.35em 0.75em;
+  padding: 0;
+}
+.snip-nav a {
+  padding: 0.4em 0;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  text-decoration: none;
+  font-size: 17px;
+}
+.snip-nav a:before,
+.snip-nav a:after {
+  height: 3px;
+  position: absolute;
+  content: '';
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  background-color: #E3342F;
+  width: 0;
+}
+.snip-nav a:before {
+  top: 0;
+  right: 0;
+}
+.snip-nav a:after {
+  bottom: 0;
+  left: 0;
+}
+.snip-nav a:hover,
+.snip-nav .current a {
+  color: #ffffff;
+}
+.snip-nav a:hover:before,
+.snip-nav .current a:before,
+.snip-nav a:hover:after,
+.snip-nav .current a:after {
+  width: 100%;
+}
+
+.page-item.active .page-link {
+	background-color: #E3342F;
+    border-color: #E3342F;
+}
+
+.page-link {
+	color: #E3342F;
+}
