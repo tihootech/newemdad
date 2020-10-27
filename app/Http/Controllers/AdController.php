@@ -56,7 +56,7 @@ class AdController extends Controller
             'service' => 'nullable|boolean',
             'dorm' => 'nullable|boolean',
             'count' => 'required|integer',
-            'gender' => Rule::in(['m', 'f', 'b']),
+            'gender' => ['required', Rule::in(['m', 'f', 'b'])],
             'shifts' => 'required|string',
             'address' => 'required|string',
             'info' => 'nullable|string',
