@@ -17,9 +17,10 @@ class CreateAdsTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('payment');
+            $table->unsignedInteger('count');
+            $table->string('gender', 1); // m:male, f:female, b:both
             $table->boolean('service')->default(0);
             $table->boolean('dorm')->default(0);
-            $table->string('gender', 1); // m:male, f:female, b:both
             $table->string('shifts');
             $table->text('address');
             $table->text('info')->nullable();
