@@ -12,7 +12,7 @@ class AdController extends Controller
 
     public function index()
     {
-        return response()->json(Ad::all(), 200);
+        return response()->json(Ad::latest()->get(), 200);
     }
 
     public function show(Ad $ad)
