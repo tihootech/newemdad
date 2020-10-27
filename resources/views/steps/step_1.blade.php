@@ -15,7 +15,7 @@
 		برای انجام این عملیات باید حتما حساب کاربری داشته باشید. شما میتوانید یا حساب کاربری جدید بسازید یا وارد حساب کاربری که قبلا ساختید بشوید
 	</p>
 	@auth
-		<a href="{{route('signup', [$type, 2])}}" class="btn btn-danger btn-round m-1">
+		<a href="{{route('signup', [$type, 2])}}" class="btn btn-primary btn-round m-1">
 			ورود به عنوان {{user('name')}}
 		</a>
 	@endauth

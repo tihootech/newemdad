@@ -77,7 +77,7 @@
     -webkit-animation: start 0.2s;
 }
 .pdp-default  .selected{
-    background: #E3342F;
+    background: #556DB6;
     color: #ffffff;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .pdp-default .nextArrow:hover, .pdp-default .prevArrow:hover{
-    color: #E3342F;
+    color: #556DB6;
 }
 
 .pdp-default .cell {
@@ -126,12 +126,12 @@
 
 /* Days of the week */
 .pdp-default .dows {
-    background: #E3342F;
+    background: #556DB6;
     color: #fff;
     margin-top: 10px !important;
 }
 .pdp-default .dow {
-    border: 1px solid #E3342F;
+    border: 1px solid #556DB6;
 }
 
 .pdp-default .days{
@@ -160,11 +160,11 @@
 
 .pdp-default .today{
     color: #fff;
-    background: #E3342F;
+    background: #556DB6;
 }
 .pdp-default .today:hover{
     color: #fff;
-    background: #E3342F;
+    background: #556DB6;
 }
 
 .pdp-default .disday, .pdp-default .disday:hover{
@@ -179,7 +179,7 @@
 }
 
 .pdp-default .pdp-footer{
-    background: #E3342F;
+    background: #556DB6;
     text-align: center;
     height: 17px;
 }
