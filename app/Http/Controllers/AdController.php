@@ -26,7 +26,11 @@ class AdController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }else {
-            $ad = Ad::create($validator->valid());
+            $data = $validator->valid();
+            if ($request->image) {
+                $data['image'] = upload($request->image);
+            }
+            $ad = Ad::create($data);
             return response()->json($ad, 201);
         }
     }
@@ -37,7 +41,11 @@ class AdController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }else {
-            $ad->update($validator->valid());
+            $data = $validator->valid();
+            if ($request->image) {
+                $data['image'] = upload($request->image, $ad->image);
+            }
+            $ad->update($data);
             return response()->json($ad, 200);
         }
     }
@@ -45,6 +53,7 @@ class AdController extends Controller
     public function destroy(Ad $ad)
     {
         $ad->delete();
+        delete_file($ad->image);
         return response()->json(null, 204);
     }
 
@@ -57,9 +66,11 @@ class AdController extends Controller
             'dorm' => 'nullable|boolean',
             'count' => 'required|integer',
             'gender' => ['required', Rule::in(['m', 'f', 'b'])],
+            'job_type' => ['required', Rule::in(['f', 'p'])],
             'shifts' => 'required|string',
             'address' => 'required|string',
             'info' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
         ];
         return Validator::make(request()->all(), $rules);
     }

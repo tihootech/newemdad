@@ -159,6 +159,7 @@ return [
         'rent'=> 'مبلغ کرایه',
         'workshop_name'=> 'کد کارگاه',
         'gender'=> 'جنسیت',
+        'job_type'=> 'نوع کار',
     ],
 
 ];
