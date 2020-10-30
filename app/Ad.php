@@ -11,6 +11,6 @@ class Ad extends Model
 
     public function getImageUrlAttribute()
     {
-        return asset($this->image);
+        return $this->image ? asset($this->image) : null;
     }
 }
