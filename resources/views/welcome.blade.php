@@ -16,9 +16,6 @@
         <a href="{{route('signup', 2)}}" class="btn bg-light btn-round m-1">
             متقاضی تسهیلات (وام)
         </a>
-        <a href="{{route('signup', 3)}}" class="btn bg-light btn-round m-1">
-            بیمه خویش فرمائی و کارفرمائی
-        </a>
         <a href="{{route('organ.signup')}}" class="btn bg-light btn-round m-1">
             ثبت نام کارفرمایان
         </a>

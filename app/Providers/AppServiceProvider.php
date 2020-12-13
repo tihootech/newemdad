@@ -39,5 +39,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admins', function () {
             return is('master') || is('expert');
         });
+        Blade::if('admins_or_organ', function () {
+            return is('master') || is('expert') || is('organ');
+        });
     }
 }

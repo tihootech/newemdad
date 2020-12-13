@@ -37,6 +37,7 @@ Route::get('اطلاعیه-های-عمومی', 'NotificationController@publics')
 Route::view('تماس-با-ما', 'contactus')->name('contactus');
 Route::get('excel/organ', 'OrganController@export')->name('organ.excel');
 Route::get('excel/madadju', 'MadadjuController@export')->name('madadju.excel');
+Route::get('ad/change/status/{ad}', 'WebAppAdsController@changeAccepted')->name('ad.stat');
 
 // introduce
 Route::get('introduce/{solicit}', 'IntroduceController@introduce_form')->name('introduce.form');
@@ -47,3 +48,4 @@ Route::resource('expert', 'ExpertController')->except('show');
 Route::resource('organ', 'OrganController')->only(['index', 'destroy']);
 Route::resource('solicit', 'SolicitController')->except('show');
 Route::resource('notification', 'NotificationController')->except('show');
+Route::resource('ad', 'WebAppAdsController')->except('show');

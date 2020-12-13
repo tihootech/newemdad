@@ -22,10 +22,11 @@ class CreateAdsTable extends Migration
             $table->boolean('service')->default(0);
             $table->boolean('dorm')->default(0);
             $table->string('shifts');
-            $table->string('job_type', 1)->default('f');
+            $table->string('job_type', 1)->default('f'); // f:full-time, p:part-time
             $table->text('address');
             $table->text('info')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('accepted')->default(0);
             $table->timestamps();
         });
     }

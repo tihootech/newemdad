@@ -37,7 +37,6 @@ class CreateOrgansTable extends Migration
             $table->string('madadjus_insurance');
             $table->string('full_insurance');
             $table->string('phone')->unique();
-            $table->smallInteger('status')->default(1); // 1:fresh, 2:edited, 3:rejected, 4:confirmed
             $table->timestamps();
         });
     }

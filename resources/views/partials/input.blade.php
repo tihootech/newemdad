@@ -27,8 +27,11 @@
 			@unless (isset($multiple))
 				<option value=""> -- انتخاب کنید -- </option>
 			@endunless
-			@foreach ($options as $option)
-				<option @if($val == $option) selected @endif>{{$option}}</option>
+			@foreach ($options as $option_key => $option)
+				@php
+					$keyval = isset($mapped) && $mapped ? $option_key : $option;
+				@endphp
+				<option @if($val === $keyval) selected @endif @if(isset($mapped) && $mapped) value="{{$option_key}}" @endif>{{$option}}</option>
 			@endforeach
 		</select>
 	@elseif ($type == 'date')

@@ -6,6 +6,7 @@
 	"first_name":"نام",
 	"last_name":"نام خانوادگی",
 	"national_code":"کدملی",
+	"madadju_code":"کدمددجویی",
 	"birth_date":"تاریخ تولد",
 	"gender":"جنسیت",
 	"education":"مقطع تحصیلی",
@@ -88,6 +89,15 @@
 	"rahgiri_code":"کدرهگیری",
 	"status":"وضعیت",
 	"":"",
+
+
+	"title":"عنوان",
+	"payment":"دستمزد",
+	"count":"تعداد",
+	"dorm":"خوابگاه",
+	"job_type":"نوع شغل",
+	"image":"تصویر",
+	"info":"توضیحات",
 
 
 

@@ -38,11 +38,7 @@
 
 	<div class="tile">
 
-		@include('partials.madadjus_table', ['list' => $applies, 'imode' => 0])
-
-		<div class="table-responsive-lg">
-			{{$applies->links()}}
-		</div>
+		@include('partials.madadjus_table', ['list' => $list, 'imode' => 0])
 
 	</div>
 @endsection

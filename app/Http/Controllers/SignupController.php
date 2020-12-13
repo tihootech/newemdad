@@ -29,12 +29,8 @@ class SignupController extends Controller
     {
 		$user = user();
         $person = Person::firstWhere('user_id', $user->id ?? 0);
-        $apply = $person ? $person->applied($type) : null;
-        if ($step > 6) {
+        if ($step > 3) {
             abort(404);
-        }
-        if ($step == 5 && !$apply) {
-            return back()->withError( __('ERROR') );
         }
 		if ($step > 1) {
 			if (!$user) {
@@ -44,7 +40,7 @@ class SignupController extends Controller
                 return back()->withError(__('CANT_SIGNUP_WITH_THIS_ACCOUNT', ['username' => $user->name, 'access' => $user->access]));
             }
 		}
-    	return view('signup', compact('type', 'step', 'person', 'apply'));
+    	return view('signup', compact('type', 'step', 'person'));
     }
 
 	public function wizard($type, $step, Request $request)
@@ -102,37 +98,25 @@ class SignupController extends Controller
         $data = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'father_name' => 'required|string',
-            'city' => Rule::in( defaults('city') ),
-            'lifestyle' => Rule::in( defaults('lifestyle') ),
             'national_code' => ['required', new NationalCodeRule, 'unique:people,national_code,'.$id],
-            'address' => 'required|string',
-            'postal_code' => 'required|string|size:10',
             'mobile' => 'required|string|size:11|unique:people,mobile,'.$id,
-            'birth_date' => new PersianDateRule,
-            'birth_certificate_number' => 'required|string',
-            'reference' => 'nullable',
-            'madadkar_name' => 'required|string',
-            'marital_status' => Rule::in( defaults('marital_status') ),
+            'madadju_code' => 'required|string|unique:people,madadju_code,'.$id,
+            'address' => 'nullable|string',
+            'birth_date' => ['nullable', new PersianDateRule],
             'military_status' => ['nullable', Rule::in( defaults('military_status') )],
-            'family_members' => 'required|integer',
-            'gender' => Rule::in( defaults('gender') ),
-            'education' => Rule::in( defaults('education') ),
+            'gender' => ['nullable', Rule::in( defaults('gender') )],
+            'education' => ['nullable', Rule::in( defaults('education') )],
             'field_of_study' => 'nullable',
-            'academic_orientation' => 'nullable',
-            'warden_type' => Rule::in( defaults('warden_type') ),
-            'health_status' => Rule::in( defaults('health_status') ),
-            'disables_in_family' => 'required|integer',
         ]);
 
         $user = user();
         if ($user && $user->type == 'user') {
-            $data['state'] = 'کرمانشاه';
             $data['user_id'] = $user->id;
-            $data['english_birth_date'] = persian_to_carbon($data['birth_date']);
+            $data['type'] = $type;
+            $data['uid'] = rand(10000000, 99999999);
+            $data['english_birth_date'] = $data['birth_date'] ? persian_to_carbon($data['birth_date']) : null;
             if ($person) {
                 $person->update($data);
-                $person->make_fresh();
             }else {
                 Person::create($data);
             }
@@ -141,114 +125,6 @@ class SignupController extends Controller
             return back()->withError(__('ERROR'));
         }
 
-    }
-
-    private function step3($type, $step, $request) {
-
-        $person = Person::where('user_id', user('id'))->firstOrFail();
-        if ($person->user_id == user('id')) {
-            $data = $request->validate([
-                'file_domain' => [ 'required', Rule::in( defaults('file_domain') )],
-                'disability_type' => [
-                    'nullable',
-                    Rule::requiredIf($request->file_domain == 'توانبخشی'),
-                    Rule::in( defaults('disability_type') )
-                ],
-                'disability_level' => [
-                    'nullable',
-                    Rule::requiredIf($request->file_domain == 'توانبخشی'),
-                    Rule::in( defaults('disability_level') )
-                ],
-                'file_status1' => [
-                    'nullable',
-                    Rule::requiredIf($request->file_domain == 'اجتماعی'),
-                    Rule::in( defaults('file_status_1') )
-                ],
-                'file_status2' => [
-                    'nullable',
-                    Rule::requiredIf($request->file_domain == 'پیشگیری'),
-                    Rule::in( defaults('file_status_2') )
-                ],
-            ]);
-
-            $person->make_fresh();
-            $person->update([
-                'file_domain' => $request->file_domain,
-                'disability_type' => $request->file_domain == 'توانبخشی' ? $request->disability_type : null,
-                'disability_level' => $request->file_domain == 'توانبخشی' ? $request->disability_level : null,
-                'file_status' => $request->file_domain == 'اجتماعی' ? $request->file_status1 : $request->file_status2,
-            ]);
-
-            return redirect()->route('signup', [$type, $step+1])->withMessage(__('STORED_SUCCESSFULLY'));
-
-        }else {
-            return back()->withError(__('ERROR'));
-        }
-    }
-
-    public function step4($type, $step, $request)
-    {
-        $person = Person::where('user_id', user('id'))->firstOrFail();
-        $apply = $person->applied($type);
-
-        $person_data = $request->validate([
-            'payed' => [ 'nullable', Rule::requiredIf($request->are_you_payed == 'هستم') , 'integer'],
-            'activity_section' => [ 'required', Rule::in( defaults('activity_section') ) ],
-            'housing_status' => [ 'required', Rule::in( defaults('housing_status') ) ],
-            'mortgage' => [ 'nullable', Rule::requiredIf($request->housing_status == 'استیجاری') , 'integer'],
-            'rent' => [ 'nullable', Rule::requiredIf($request->housing_status == 'استیجاری') , 'integer'],
-            'information' => 'nullable'
-        ]);
-
-        if ($type == 1) {
-            $apply_data = $request->validate([
-                'skill_type' => 'required',
-                'interests' => 'required',
-                'vehicle_type' => [ 'required', Rule::in( defaults('vehicle_type') ) ],
-            ]);
-        }
-        if ($type == 2) {
-            $apply_data = $request->validate([
-                'workshop_name' => 'required|string',
-                'license_type' => 'required|string',
-                'license_system' => 'required|string',
-                'plan_title' => 'required|string',
-                'required_finance' => 'required|integer',
-                'suggested_bank' => 'required|string',
-                'insurance_number' => 'nullable',
-            ]);
-        }
-        if ($type == 3) {
-            $apply_data = $request->validate([
-                'workshop_name' => 'required|string',
-                'workshop_code' => 'required|string|size:10',
-                'license_type' => 'required|string',
-                'license_system' => 'required|string',
-                'plan_title' => 'required|string',
-                'insurance_status' => [ 'required', Rule::in( defaults('insurance_status') ) ],
-                'insurance_number' => 'required|string',
-                'monthly_amount' => 'required|integer',
-                'shaba' => 'required|string',
-                'bank' => 'required|string',
-            ]);
-        }
-
-        if ($apply) {
-            $apply_data['status'] = 1;
-            $apply->update($apply_data);
-        }else {
-            if ($type == 1) $class = 'App\JobApply';
-            if ($type == 2) $class = 'App\LoanApply';
-            if ($type == 3) $class = 'App\InsuranceApply';
-            $apply_data['uid'] = rand(100000000,999999999);
-            $apply_data['person_id'] = $person->id;
-            $class::create($apply_data);
-            History::make($type, $person->id);
-        }
-
-        $person->update($person_data);
-
-        return redirect()->route('signup', [$type, $step+1])->withMessage(__('APPLIED_SUCCESSFULLY'));
     }
 
     public function organ_form()

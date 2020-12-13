@@ -10,7 +10,7 @@
 
     <section class="align-items-center d-flex bg-dark main-banner">
         <div class="banner-container">
-            <div class="card">
+            <div class="card mx-auto">
                 <div class="card-header text-center">
                     <h1 class="h3"> کد رهگیری </h1>
                 </div>

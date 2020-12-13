@@ -17,8 +17,6 @@ class CreateIntroducesTable extends Migration
             $table->id();
             $table->unsignedInteger('expert_id');
             $table->unsignedInteger('person_id');
-            $table->unsignedInteger('job_apply_id');
-            $table->unsignedInteger('solicit_id');
             $table->unsignedInteger('organ_id');
             $table->timestamps();
         });

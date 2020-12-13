@@ -79,7 +79,7 @@ return [
     'size'                 => [
         'numeric' => ' :attribute must be :size.',
         'file'    => ' :attribute must be :size kilobytes.',
-        'string'  => ' :attribute must be :size characters.',
+        'string'  => ' :attribute باید :size کاراکتر باشد.',
         'array'   => ' :attribute must contain :size items.',
     ],
     'string'               => 'در :attribute از کاراکتر های صحیحی استفاده نشده اشت..',

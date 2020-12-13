@@ -52,7 +52,6 @@
 				<thead>
 					<tr>
 						<th> ردیف </th>
-						<th> وضعیت </th>
 						<th style="min-width:200px">@lang('operator')</th>
 						<th> @lang('phone') </th>
 						<th> استان </th>
@@ -79,17 +78,6 @@
 					@foreach ($organs as $r => $organ)
 						<tr>
 							<th> {{$r+1}} </th>
-							<td class="
-								@if($organ->status == 1)
-									bg-warning
-								@elseif($organ->status == 2)
-									bg-info text-light
-								@elseif($organ->status == 3)
-									bg-danger text-light
-								@else bg-success text-light
-							@endif">
-								{{$organ->stat}}
-							</td>
 							<td> {{$organ->full_name}} </td>
 							<td dir="ltr"> {{$organ->phone}} </td>
 							<td> {{$organ->state}} </td>

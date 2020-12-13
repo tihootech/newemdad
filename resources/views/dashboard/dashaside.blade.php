@@ -14,6 +14,14 @@
 			</a>
 		</li>
 
+		@admins_or_organ
+			<li>
+				<a class="app-menu__item @if(rn() == 'ad.index') active @endif" href="{{route('ad.index')}}">
+					<i class="app-menu__icon fa fa-user-secret"></i><span class="app-menu__label">  مدیریت آگهی ها </span>
+				</a>
+			</li>
+		@endadmins_or_organ
+
 		@master
 			<li>
 				<a class="app-menu__item @if(rn() == 'expert.index') active @endif" href="{{route('expert.index')}}">
@@ -36,7 +44,7 @@
 			</li>
 
 			@php
-				$hrefs = [route('madadjus', 'job'), route('madadjus', 'loan'), route('madadjus', 'insurance')];
+				$hrefs = [route('madadjus', 1), route('madadjus', 2)];
 			@endphp
 			<li class="treeview @if(expanded($hrefs)) is-expanded @endif">
 				<a class="app-menu__item" href="#" data-toggle="treeview">
@@ -53,11 +61,6 @@
 					<li>
 						<a class="treeview-item @if(active($hrefs[1])) active @endif" href="{{$hrefs[1]}}">
 							<i class="icon fa fa-circle-o"></i> متقاضی وام
-						</a>
-					</li>
-					<li>
-						<a class="treeview-item @if(active($hrefs[2])) active @endif" href="{{$hrefs[2]}}">
-							<i class="icon fa fa-circle-o"></i> بیمه خویش فرمائی و کارفرمائی
 						</a>
 					</li>
 				</ul>

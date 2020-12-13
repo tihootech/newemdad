@@ -33,10 +33,7 @@
 
 @font-face {
 	font-family: 'Sahel';
-	src: url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.eot');
-	src: url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.eot?#iefix') format('embedded-opentype'),
-	url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.woff') format('woff'),
-	url('https://fonts.codearena.ir/rastikerdar/sahel/sahel.ttf') format('truetype');
+	src: url(../../fonts/sahel.ttf);
 	font-weight: normal;
 }
 

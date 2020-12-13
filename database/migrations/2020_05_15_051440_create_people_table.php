@@ -18,43 +18,21 @@ class CreatePeopleTable extends Migration
             $table->unsignedInteger('user_id');
 
             // items
-            $table->string('state');
-            $table->string('city');
-            $table->string('lifestyle');
-            $table->text('address');
-            $table->string('postal_code');
-            $table->string('national_code');
+            $table->string('uid'); // کدرهگیری
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('father_name');
-            $table->string('birth_certificate_number');
-            $table->string('birth_date');
-            $table->date('english_birth_date');
-            $table->string('reference')->nullable();
-            $table->string('madadkar_name')->nullable();
-            $table->string('marital_status');
-            $table->unsignedSmallInteger('family_members');
-            $table->string('gender');
-            $table->string('education');
+            $table->string('national_code')->unique();
+            $table->string('madadju_code')->unique();
+            $table->string('mobile')->unique();
+            $table->text('address')->nullable();
+            $table->string('birth_date')->nullable();
+            $table->string('military_status')->nullable();
+            $table->date('english_birth_date')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('education')->nullable();
             $table->string('field_of_study')->nullable();
-            $table->string('academic_orientation')->nullable();
-            $table->string('warden_type');
-            $table->string('health_status');
-            $table->unsignedSmallInteger('disables_in_family');
-            $table->string('mobile');
-            $table->text('information')->nullable();
+            $table->unsignedSmallInteger('type'); // 1:job. 2:loan
 
-            $table->string('payed')->nullable();
-            $table->string('activity_section')->nullable();
-            $table->string('housing_status')->nullable();
-            $table->string('mortgage')->nullable();
-            $table->string('rent')->nullable();
-
-            // file related
-            $table->string('file_domain')->nullable();;
-            $table->string('file_status')->nullable();
-            $table->string('disability_type')->nullable();;
-            $table->string('disability_level')->nullable();;
             $table->timestamps();
         });
     }
