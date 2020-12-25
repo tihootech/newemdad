@@ -19,7 +19,7 @@ class Ad extends Model
         return $this->type == 'p' ? 'نیمه وقت' : 'پاره وقت';
     }
 
-    public function getGenderAttribute()
+    public function getGenderPersianAttribute()
     {
         return $this->type == 'm' ? 'آقا' : ($this->type == 'f' ? 'خانم' : 'هردو');
     }

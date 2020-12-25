@@ -160,6 +160,9 @@ return [
         'workshop_name'=> 'کد کارگاه',
         'gender'=> 'جنسیت',
         'job_type'=> 'نوع کار',
+        'madadju_code'=> 'کد مددجویی',
+        'type'=> 'نوع',
+        'user_id'=> 'آیدی یوزر',
     ],
 
 ];
