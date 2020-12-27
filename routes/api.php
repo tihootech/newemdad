@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('ad', 'Api\AdController');
 Route::apiResource('person', 'Api\PersonController');
+Route::apiResource('user', 'Api\UserApiController');
